@@ -1,0 +1,16 @@
+.myBookmark.myLeftBox {
+	&>.tabs {
+		display: flex;
+		flex-direction: column;
+		&>.genericButton.tab {
+			width: 100%;
+			margin-top:-1px;
+		}
+	}
+}
+
+.myBookmark.myLeftBoxAlter {
+	&>.dropdown {
+		width: 100%;
+	}
+}

@@ -1,0 +1,159 @@
+.subjectCard {
+	position: relative;
+	user-select: none;
+	&>.top {
+		padding: 1rem 1rem 0 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		border: 1px solid var(--color_border);
+		border-radius: 1rem 1rem 0 0;
+		background-color: var(--color_background);
+		&>.actName {
+			color: var(--color_dark);
+		}
+		&>.subjectName {
+			color: var(--color_darkest);
+		}
+		/* 문제썸네일 */
+		&>.imgWrapper {
+			height: 8rem;
+			border-radius: 0.5rem 0.5rem 0 0;
+			@media screen and (max-width:800px) {
+				height: 15rem;
+			}
+		}
+	}
+	& .imgWrapper {
+		position: relative;
+		width: 100%;
+		font-size: 0;
+		background-color: var(--color_black);
+		overflow: hidden;
+		&>.blur {
+			object-fit: cover;
+			width: 125%;
+			height: 125%;
+			position: relative;
+			transform: translate(-12.5%,-12.5%);
+			filter: blur(2px) brightness(0.95);
+		}
+		&>.img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			object-fit: contain;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&>.bottom {
+		padding: 1rem;
+		background-color: var(--color_background_sub);
+		border-radius: 0 0 1rem 1rem;
+		border: 1px solid var(--color_border);
+		border-width: 0 1px 1px 1px;
+	}
+	&.type0 {
+		&>.bottom {
+			/* 북마크용 */
+			display: flex;
+			gap: 1rem;
+			&>* {
+				flex: 1;
+			}
+		}
+	}
+	&.type1 {
+		&>.bottom {
+			/* 진척도용 */
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			&>.dateField {
+				&>.check {
+					width: 2rem;
+					height: 2rem;
+				}
+			}
+			&>.buttons {
+				display: flex;
+				gap: 0.75rem;
+			}
+		}
+	}
+	/* type2 단순표시 */
+	&.type2 {
+		cursor: pointer;
+		&>.top {
+			padding: 1rem;
+			background-color: var(--color_background_sub);
+			transition: 0.15s;
+		}
+		&>.bottom {
+			transition: 0.15s;
+			padding: 0 1rem 1rem 1rem;
+			/* 하단문제썸네일 */
+			&>.imgWrapper {
+				height: 8rem;
+				border-radius: 0 0 0.5rem 0.5rem;
+				@media screen and (max-width:800px) {
+					height: 15rem;
+				}
+			}
+		}
+		&:hover, &.active {
+			&>.top {
+				border-color: var(--color_main);
+				background-color: var(--color_main);
+				&>.actName {
+					color: var(--color_sub);
+				}
+				&>.subjectName {
+					color: var(--color_sub);
+				}
+			}
+			&>.bottom {
+				border-color: var(--color_main);
+				background-color: var(--color_main);
+			}
+		}
+	}
+	&>.bookmark {
+		position: absolute;
+		right: 1rem;
+		top: -0.25rem;
+	}
+	&.disabled {
+		opacity: 0.55;
+		filter: brightness(0.95);
+		transition: opacity 0.15s, filter 0.15s;
+		&.type1>.bottom {
+			color: var(--color_gray);
+		}
+		&:hover {
+			opacity: 1;
+			filter:none;
+		}
+	}
+	&.correct.type1 {
+		&>.bottom {
+			color: var(--color_green);
+		}
+	}
+	&.incorrect.type1 {
+		&>.bottom {
+			color: var(--color_red);
+		}
+	}
+}
+
+.bookmark {
+	width: 2rem;
+	height: 2rem;
+	color: var(--color_gray);
+	cursor: pointer;
+	&.active {
+		color: var(--color_sub);
+	}
+}
